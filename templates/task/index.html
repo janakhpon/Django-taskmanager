@@ -21,15 +21,50 @@
 
 
       <div class="ui middle aligned divided list">
+
+
+        {% block content %}
+
+        {% for arti in object_list %}
         <div class="item">
           <div class="right floated content">
-            <div class="ui button">Add</div>
+            <div id="viewModal" class="ui teal button">view</div>
+            <div class="ui green button">complete</div>
           </div>
+
+
+          <div class="ui modal display">
+            <div class="header">Your new task</div>
+            <div class="content">
+
+              <form class="ui form">
+                <div class="field">
+                  <label>Topic</label>
+                  <input type="text" name="first-name" placeholder="First Name">
+                </div>
+                <div class="field">
+                  <label>Description</label>
+                  <textarea rows="2">{{arti.pk}}</textarea>
+                </div>
+                <button class="ui button" type="submit">create</button>
+              </form>
+
+            </div>
+          </div>
+
+          
           <img class="ui avatar image" src="{% static 'task/img/avator.jpg' %}">
           <div class="content">
-            Lena
+            <p><a href="{% url 'detail' arti.pk %}">{{ arti.topic }}</a></p>
           </div>
         </div>
+        {% endfor %}
+
+        {% endblock content %}
+
+
+
+
       </div>
 
 
@@ -59,6 +94,9 @@
           </form>
         </div>
       </div>
+
+
+
 
 
 

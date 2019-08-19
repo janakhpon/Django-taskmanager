@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Django | task manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.css'>
+  <link rel="stylesheet" href="{% static 'task/css/style.css' %}">
+</head>
+
+<body>
+
+
+  <div class="ui one column stackable page grid">
+    <div class="column twelve wide">
+
+      {% block content %}
+
+      <div class="ui placeholder segment">
+        <div class="ui icon header">
+          <i class="search icon"></i>
+        {{ task.description }}
+        </div>
+        <p>{{task.date_at}}</p>
+        <div class="inline">
+          <div class="ui primary button">Clear Query</div>
+          <div class="ui button">Add Document</div>
+        </div>
+      </div>
+
+      {% endblock content %}
+
+    </div>
+ </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js'></script>
+  <script src="{% static 'task/js/script.js' %}"></script>
+
+</body>
+
+</html>
