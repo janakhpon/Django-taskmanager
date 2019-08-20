@@ -20,4 +20,5 @@ from task import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('update/', views.update),
 ]
