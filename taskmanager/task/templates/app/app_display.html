@@ -27,22 +27,28 @@
         <div class="ui divider"></div>
 
         <div class="ui middle aligned divided list">
-            <hr>
+
             {% block content %}
+
+            {% for task in tasks %}
+            <hr>
             <div class="item">
               <div class="right floated content">
-                <div class="ui teal button">view</div>
+                <a href="/edit/{{ task.pk }}" class="ui teal button">view</a>
                 <div class="ui blue button">update</div>
                 <div class="ui orange button">complete</div>
               </div>
               <img class="ui avatar image" src="{% static 'img/avator.jpg' %}" />
               <div class="content">
-                Lena
+                <h4>{{ task.topic }}</h4>
+                <p> more ... </p>
               </div>
             </div>
+            <hr>
+            {% endfor %}
             {% endblock content %}
 
-            <hr>
+
         </div>
 
 
@@ -77,6 +83,6 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js'></script>
-<script src="{% static 'js/js_view.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
