@@ -33,22 +33,25 @@
       <div class="ui modal">
         <div class="header">Your new task</div>
         <div class="content">
-          <form class="ui form">
+          <form method="POST" class="ui form" action="/update/{{task.pk}}">
+            {% csrf_token %}
             <div class="field">
               <label>Topic</label>
-              <input type="text" name="first-name" value="{{task.topic}}" placeholder="First Name">
+              <input type="text" name="topic" value="{{task.topic}}" placeholder="First Name">
             </div>
             <div class="field">
               <label>Description</label>
-              <textarea rows="2">{{task.description}}</textarea>
+              <textarea name="description" rows="2">{{task.description}}</textarea>
             </div>
             <div class="field">
-              <div class="ui icon input">
+              <div class="ui disabled icon input">
                 <i class="calendar alternate outline"></i>
-                <input type="text" value="{{task.date_at}}">
+                <input type="text" name="date_at" value="{{task.date_at}}">
               </div>
             </div>
-            <button class="ui button" type="submit">create</button>
+            {{ form.as_p }}
+            <button class="ui button" type="submit">update</button>
+            <a href="/delete/{{ task.pk }}" class="ui red button">delete</a>
           </form>
         </div>
       </div>

@@ -1,6 +1,7 @@
   {% load staticfiles %}
   <!DOCTYPE html>
   <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <title>Django | taskmanager </title>
@@ -13,76 +14,114 @@
   <body>
 
 
-      <div class="ui one column stackable page grid">
-        <div class="column twelve wide">
+    <div class="ui one column stackable page grid">
+      <div class="column twelve wide">
 
 
-          <div class="ui divider"></div>
-
-
-
-          <div class="ui container">
-            <button id="btnModal" class="ui green button">new task</button>
-          </div>
-          <div class="ui divider"></div>
-
-          <div class="ui middle aligned divided list">
-
-              {% block content %}
-
-              {% for task in tasks %}
-              <hr>
-              <div class="item">
-                <div class="right floated content">
-                  <a href="/edit/{{ task.pk }}" class="ui teal button">view</a>
-                  <div class="ui blue button">update</div>
-                  <div class="ui orange button">complete</div>
-                </div>
-                <img class="ui avatar image" src="{% static 'img/avator.jpg' %}" />
-                <div class="content">
-                  <h4>{{ task.topic }}</h4>
-                  <p> more ... </p>
-                </div>
-              </div>
-              <hr>
-              {% endfor %}
-              {% endblock content %}
-
-
-          </div>
+        <div class="ui divider"></div>
 
 
 
-          <div class="ui divider"></div>
+        <!-- ====================== input modal box trigger ========================= -->
+        <div class="ui container">
+          <button id="btnModal" class="ui green button">new task</button>
+        </div>
+        <!-- ====================== END|input modal box trigger  ========================= -->
 
 
 
 
-          <div class="ui modal">
-            <div class="header">Your new task</div>
+
+        <div class="ui divider"></div>
+
+        <div class="ui middle aligned divided list">
+
+          {% block content %}
+
+          {% for task in tasks %}
+          <hr>
+          <div class="item">
+            <div class="right floated content">
+              <a id="viewModal"  class="ui teal button" href="/display/{{ task.pk }}">view</a>
+              <a href="/edit/{{ task.pk }}" class="ui blue button">update</a>
+              <div class="ui orange button">complete</div>
+            </div>
+            <img class="ui avatar image" src="{% static 'img/avator.jpg' %}" />
             <div class="content">
-              <form class="ui form">
-                <div class="field">
-                  <label>Topic</label>
-                  <input type="text" name="first-name" placeholder="First Name">
-                </div>
-                <div class="field">
-                  <label>Description</label>
-                  <textarea rows="2"></textarea>
-                </div>
-                <button class="ui button" type="submit">create</button>
-              </form>
+              <h4>{{ task.topic }}</h4>
+              <p> more ... </p>
             </div>
           </div>
-
+          <hr>
+          {% endfor %}
+          {% endblock content %}
 
 
         </div>
-     </div>
 
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js'></script>
-  <script src="{% static 'js/script.js' %}"></script>
+
+        <div class="ui divider"></div>
+
+
+
+        <!-- ====================== input modal box  ========================= -->
+        <div class="ui modal">
+          <div class="header">Your new task</div>
+          <div class="content">
+            <form class="ui form">
+              <div class="field">
+                <label>Topic</label>
+                <input type="text" name="first-name" placeholder="First Name">
+              </div>
+              <div class="field">
+                <label>Description</label>
+                <textarea rows="2"></textarea>
+              </div>
+              <button class="ui button" type="submit">create</button>
+            </form>
+          </div>
+        </div>
+        <!-- ====================== END|input modal box  ========================= -->
+
+
+
+
+        <!-- ====================== view modal box  ========================= -->
+        <div class="ui modal view">
+          <div class="header">Your new task</div>
+          <div class="content">
+            <form class="ui form">
+              <div class="field">
+                <label>Topic</label>
+                <input type="text" name="first-name" value="{{task.topic}}" placeholder="First Name">
+              </div>
+              <div class="field">
+                <label>Description</label>
+                <textarea rows="2">{{task.description}}</textarea>
+              </div>
+              <div class="field">
+                <div class="ui icon input">
+                  <i class="calendar alternate outline"></i>
+                  <input type="date" value="{{task.date_at}}">
+                </div>
+              </div>
+              <button class="ui button" type="submit">create</button>
+            </form>
+          </div>
+        </div>
+
+
+        <!-- ====================== END|view modal box  ========================= -->
+
+
+      </div>
+    </div>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js'></script>
+    <script src="{% static 'js/script.js' %}"></script>
   </body>
+
   </html>

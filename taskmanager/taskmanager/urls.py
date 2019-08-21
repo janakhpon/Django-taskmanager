@@ -20,6 +20,8 @@ from task import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('update/', views.update),
+    path('update/<int:pk>', views.update),
     path('edit/<int:pk>', views.edit),
+    path('display/<int:pk>', views.display),
+    path('delete/<int:pk>', views.delete),
 ]

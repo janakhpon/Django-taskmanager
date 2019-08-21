@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from task.forms import TaskForm
 from task.models import Task
 
@@ -24,18 +24,22 @@ def edit(request, pk):
     task = Task.objects.get(pk=pk)
     return render(request, 'app/app_display.html', {'task':task})
 
-def update(request,pk):
+def display(request, pk):
+    task = Task.objects.get(pk=pk)
+    return render(request, 'app/app_index.html', {'task':task})
+
+def update(request, pk):
     task = Task.objects.get(pk=pk)
     form = TaskForm(request.POST, instance = task)
     if form.is_valid():
         form.save()
-        return redirect('/index')
-    return render(request, 'app/app_update.html', {'task':task})
+        return redirect(index)
+    return render(request, 'app/app_display.html', {'task': task})
 
 def delete(request,pk):
     task = Task.objects.get(pk=pk)
     task.delete()
-    return redirect('/index')
+    return redirect(index)
 
 """
 from django.shortcuts import render, redirect
