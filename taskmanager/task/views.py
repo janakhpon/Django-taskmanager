@@ -20,9 +20,9 @@ def index(request):
     tasks = Task.objects.all()
     return render(request, 'app/app_index.html', {'tasks':tasks})
 
-def edit(request,pk):
+def edit(request, pk):
     task = Task.objects.get(pk=pk)
-    return render(request, 'app/app_update.html', {'task':task})
+    return render(request, 'app/app_display.html', {'task':task})
 
 def update(request,pk):
     task = Task.objects.get(pk=pk)
